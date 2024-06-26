@@ -6,3 +6,22 @@ Consider the number of unique elements of nums to be k, to get accepted, you nee
 Change the array nums such that the first k elements of nums contain the unique elements in the order they were present in nums initially. The remaining elements of nums are not important as well as the size of nums.
 Return k.
 """
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        seenNums = {}
+        dupCounter = 0
+        k = 0
+
+        for index, num in enumerate(nums):
+            if (num in seenNums):
+                dupCounter += 1
+            else:
+                nums[index-dupCounter] = num
+                seenNums[num] = 1
+                k += 1
+
+        return k
